@@ -1,0 +1,4 @@
+SmileViz
+========
+
+A SMILES visualizer
