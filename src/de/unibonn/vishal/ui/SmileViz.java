@@ -18,7 +18,13 @@ package de.unibonn.vishal.ui;
 
 import de.unibonn.vishal.main.DrawMolecule;
 import de.unibonn.vishal.main.PopUpMenu;
+import java.awt.Dimension;
+import java.awt.GraphicsConfiguration;
+import java.awt.Rectangle;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import org.openscience.cdk.exception.CDKException;
 
 /**
@@ -272,8 +278,13 @@ public class SmileViz extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SmileViz().setVisible(true);
-
+                SmileViz ui = new SmileViz();
+                ui.setVisible(true);
+                GraphicsConfiguration gc = ui.getGraphicsConfiguration();
+                Rectangle bounds = gc.getBounds();
+                Dimension size = ui.getPreferredSize();
+                ui.setLocation((int) ((bounds.width / 2) - (size.getWidth() / 2)),
+                        (int) ((bounds.height / 2) - (size.getHeight() / 2)));
             }
         });
     }
