@@ -12,7 +12,7 @@ SMILES Visualizer (SmileViz) is a simple, on-the-top java-based desktop applicat
 Instructions: 
 
 1. Download the zip file and extract to a folder
-2. Open command line/Terminal
+2. Open Command Line/Terminal
 3. Start the visualizer by executing the command: java -jar "path-to-SmileViz.jar"
 
 
