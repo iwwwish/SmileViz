@@ -59,7 +59,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * @author John May
+ * @author John May <johnmay[at]ebi.ac.uk>
  */
 public class SmoothGenerator implements IGenerator<IAtomContainer> {
 

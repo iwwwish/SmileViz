@@ -1,7 +1,18 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (c) 2014. Vishal Siramshetty
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 package de.unibonn.vishal.ui;
 
@@ -12,7 +23,7 @@ import org.openscience.cdk.exception.CDKException;
 
 /**
  *
- * @author vsiramshetty
+ * @author Vishal Siramshetty <srmshtty[at]gmail.com>
  */
 public class SmileViz extends javax.swing.JFrame {
 
@@ -26,6 +37,7 @@ public class SmileViz extends javax.swing.JFrame {
         resultDisplayPanel.setToolTipText(null);
         imageLabel.setToolTipText(null);
         outerPanel.setToolTipText(null);
+        inputSmile.setToolTipText(null);
     }
 
     /**
@@ -37,22 +49,12 @@ public class SmileViz extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPopupMenu1 = new javax.swing.JPopupMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
         outerPanel = new javax.swing.JPanel();
         inputSmile = new javax.swing.JTextField();
         resultDisplayPanel = new javax.swing.JPanel();
         imageLabel = new javax.swing.JLabel();
         infoLabel = new javax.swing.JLabel();
         statusBar = new javax.swing.JLabel();
-
-        jMenuItem1.setLabel("gggggggg");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
-            }
-        });
-        jPopupMenu1.add(jMenuItem1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SMILES Visualizer");
@@ -155,15 +157,84 @@ public class SmileViz extends javax.swing.JFrame {
                 popup = new PopUpMenu(query, icon);
                 imageLabel.setComponentPopupMenu(popup);
             } catch (CDKException ex) {
-                statusBar.setText("<html><b>Status</b>: Error! " + (ex.getMessage()).replace('^', ' '));
+                if (ex.getMessage().contains("^")) {
+                    statusBar.setText("<html><b>Status</b>: Error! " + getFirstErrorLine(ex.getMessage())
+                            + " " + getRingClosureError(ex.getMessage()));
+                } else {
+                    statusBar.setText("<html><b>Status</b>: Error! " + ex.getMessage());
+                }
+                imageLabel.setIcon(null);
             }
+        } else {
+            imageLabel.setIcon(null);
+            statusBar.setText(null);
         }
 
     }//GEN-LAST:event_inputSmileKeyReleased
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    private String getFirstErrorLine(String error) {
+        String newline = System.getProperty("line.separator");
+        String[] lines = error.split(newline);
+        if (lines.length > 0) {
+            for (int i = 0; i < lines.length; i++) {
+                if (i == 0) {
+                    return lines[i];
+                }
+            }
+        }
+        return null;
+    }
+
+    private String getRingClosureError(String error) {
+        String newline = System.getProperty("line.separator");
+        String[] lines = error.split(newline);
+
+        if (lines.length > 0) {
+            for (int i = 0; i < lines.length; i++) {
+                if (i == 1) {
+                    int index = getErrorIndex(error);
+                    char c = lines[i].charAt(index - 1);
+                    String smiles = lines[i].substring(0, lines[i].length() - 1);
+
+                    StringBuilder smile = new StringBuilder();
+                    smile.append(smiles).append("<u>").append(c).append("</u>");
+
+                    return smile.toString();
+                }
+            }
+        }
+        return null;
+
+    }
+
+    private String generateHTMLSpace(int n) {
+        String space = "&nbsp;";
+        StringBuilder htmlSpace = new StringBuilder();
+        for (int i = 0; i < n; i++) {
+            htmlSpace.append(space);
+        }
+
+        return htmlSpace.toString();
+
+    }
+
+    private int getErrorIndex(String error) {
+        int index = -1;
+        String newline = System.getProperty("line.separator");
+        String pipe = "^";
+        String[] lines = error.split(newline);
+
+        if (lines.length > 0) {
+            for (String line : lines) {
+                if (line.contains(pipe)) {
+                    return line.indexOf(pipe) + 1;
+
+                }
+            }
+        }
+
+        return index;
+    }
 
     private void imageLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imageLabelMouseClicked
 
@@ -193,13 +264,7 @@ public class SmileViz extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SmileViz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SmileViz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SmileViz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(SmileViz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
@@ -217,8 +282,6 @@ public class SmileViz extends javax.swing.JFrame {
     private javax.swing.JLabel imageLabel;
     private javax.swing.JLabel infoLabel;
     private javax.swing.JTextField inputSmile;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JPanel outerPanel;
     private javax.swing.JPanel resultDisplayPanel;
     private javax.swing.JLabel statusBar;

@@ -1,6 +1,18 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (c) 2013. Chandra Tungaturthi
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 package de.unibonn.vishal.utils;
 
@@ -25,7 +37,7 @@ import javax.swing.text.JTextComponent;
 
 /**
  *
- * @author tckb
+ * @author Chandra Tungathutŕthi <tckb.504[at]gmail.com>
  */
 public class Utility {
 
@@ -99,8 +111,6 @@ public class Utility {
                     mylogger.info("Copy completed");
                     return newFile;
                 }
-
-
 
             } catch (IOException ex) {
                 mylogger.log(Level.SEVERE, "Something went wrong; error while copying: ", ex);
@@ -248,24 +258,20 @@ public class Utility {
 
     public static String readFileAsString(String fname) {
 
-
         return readFile(new File(fname), true);
     }
 
     public static String readFileAsString(File f) {
-
 
         return readFile(f, true);
     }
 
     public static String readFileAsLongString(String fname) {
 
-
         return readFile(new File(fname), false);
     }
 
     public static String readFileAsLongString(File f) {
-
 
         return readFile(f, false);
     }
@@ -279,7 +285,6 @@ public class Utility {
      */
     public static int searchInTxComp(JTextComponent src, String word) {
         int firstOffset = -1;
-
 
         if (word == null || word.isEmpty()) {
             return -1;
@@ -299,9 +304,6 @@ public class Utility {
         word = word.toLowerCase();
         int lastIndex = 0;
         int wordSize = word.length();
-
-
-
 
         while ((lastIndex = content.indexOf(word, lastIndex)) != -1) {
             int endIndex = lastIndex + wordSize;
@@ -354,10 +356,8 @@ public class Utility {
                 mylogger.log(Level.SEVERE, "Error:", ex);
             }
 
-
             return trList;
         }
-
 
     }
 
@@ -415,14 +415,14 @@ public class Utility {
         ObjectOutputStream stream;
         try {
             thatFile.delete();
-            if(thatFile.createNewFile()){
-            stream = new ObjectOutputStream(new FileOutputStream(thatFile));
-            stream.writeObject(thisObject);
-            stream.close();
-            }else{
+            if (thatFile.createNewFile()) {
+                stream = new ObjectOutputStream(new FileOutputStream(thatFile));
+                stream.writeObject(thisObject);
+                stream.close();
+            } else {
                 mylogger.warning("File creation failed! try again");
             }
-                
+
         } catch (IOException ex) {
             mylogger.log(Level.SEVERE, "Error: Can not save the object!", ex.getMessage());
         }
