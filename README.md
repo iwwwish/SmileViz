@@ -13,7 +13,7 @@ Instructions:
 
 1. Download the zip file and extract
 2. Open command line/Terminal
-3. Start the visualizer by executing the command: java -jar "<path-to-SmileViz.jar>"
+3. Start the visualizer by executing the command: java -jar "path-to-SmileViz.jar"
 
 
 A demo for SMILES Visualizer can be found in my blogpost.
