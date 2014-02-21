@@ -7,4 +7,4 @@ SMILES Visualizer is a simple, on-the-top desktop application that visualizes th
 2. error in the smile will be displayed (dynamic)
 3. you will not need internet
 
-More about the application can be found in my blogpost.
+More about SMILES Visualizer can be found in my blogpost.
