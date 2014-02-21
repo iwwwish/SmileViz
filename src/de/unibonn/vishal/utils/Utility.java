@@ -73,7 +73,7 @@ public class Utility {
             in.close();
             out.close();
             mylogger.info("... done}");
-        } catch (Exception ex) {
+        } catch (IOException ex) {
             mylogger.log(Level.SEVERE, "Error while copying: ", ex);
 
         }
@@ -84,7 +84,8 @@ public class Utility {
     /**
      *
      * @param fromFile
-     * @param toFile
+     * @param folder
+     * @param asName
      * @return
      */
     public static File copyToFolderAs(File fromFile, File folder, String asName) {
