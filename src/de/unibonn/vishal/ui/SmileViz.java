@@ -21,10 +21,7 @@ import de.unibonn.vishal.main.PopUpMenu;
 import java.awt.Dimension;
 import java.awt.GraphicsConfiguration;
 import java.awt.Rectangle;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
 import org.openscience.cdk.exception.CDKException;
 
 /**
@@ -40,6 +37,8 @@ public class SmileViz extends javax.swing.JFrame {
      */
     public SmileViz() {
         initComponents();
+        Dimension d = new Dimension(0, 10);
+        scrollPane.getHorizontalScrollBar().setPreferredSize(d);
         resultDisplayPanel.setToolTipText(null);
         imageLabel.setToolTipText(null);
         outerPanel.setToolTipText(null);
@@ -60,6 +59,7 @@ public class SmileViz extends javax.swing.JFrame {
         resultDisplayPanel = new javax.swing.JPanel();
         imageLabel = new javax.swing.JLabel();
         infoLabel = new javax.swing.JLabel();
+        scrollPane = new javax.swing.JScrollPane();
         statusBar = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -109,6 +109,11 @@ public class SmileViz extends javax.swing.JFrame {
 
         infoLabel.setText("Type your SMILES here");
 
+        scrollPane.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        scrollPane.setToolTipText("");
+        scrollPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+        scrollPane.setViewportView(statusBar);
+
         javax.swing.GroupLayout outerPanelLayout = new javax.swing.GroupLayout(outerPanel);
         outerPanel.setLayout(outerPanelLayout);
         outerPanelLayout.setHorizontalGroup(
@@ -121,7 +126,7 @@ public class SmileViz extends javax.swing.JFrame {
                     .addGroup(outerPanelLayout.createSequentialGroup()
                         .addComponent(infoLabel)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(statusBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(scrollPane))
                 .addContainerGap())
         );
         outerPanelLayout.setVerticalGroup(
@@ -134,7 +139,8 @@ public class SmileViz extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(resultDisplayPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(statusBar, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE))
+                .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -295,6 +301,7 @@ public class SmileViz extends javax.swing.JFrame {
     private javax.swing.JTextField inputSmile;
     private javax.swing.JPanel outerPanel;
     private javax.swing.JPanel resultDisplayPanel;
+    private javax.swing.JScrollPane scrollPane;
     private javax.swing.JLabel statusBar;
     // End of variables declaration//GEN-END:variables
 }
