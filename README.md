@@ -9,4 +9,4 @@ SMILES Visualizer (SmileViz) is a simple, on-the-top, java-based desktop applica
 4. lastly, you will not need internet.
 
 
-A demo for SMILES Visualizer can be found in my blogpost.
+A demo for SMILES Visualizer can be found in my [blogpost](http://vishalkpp.blogspot.de/2014/02/simple-smiles-visualizer.html).
