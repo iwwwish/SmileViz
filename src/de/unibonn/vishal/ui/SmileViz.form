@@ -143,9 +143,7 @@
         <Container class="javax.swing.JScrollPane" name="scrollPane">
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
-                <EtchetBorder/>
-              </Border>
+              <Border info="null"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value=""/>
             <Property name="verticalScrollBarPolicy" type="int" value="21"/>
@@ -154,6 +152,11 @@
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
             <Component class="javax.swing.JLabel" name="statusBar">
+              <Properties>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="null"/>
+                </Property>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>

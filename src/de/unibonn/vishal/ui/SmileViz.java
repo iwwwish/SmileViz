@@ -109,9 +109,11 @@ public class SmileViz extends javax.swing.JFrame {
 
         infoLabel.setText("Type your SMILES here");
 
-        scrollPane.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        scrollPane.setBorder(null);
         scrollPane.setToolTipText("");
         scrollPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+
+        statusBar.setBorder(null);
         scrollPane.setViewportView(statusBar);
 
         javax.swing.GroupLayout outerPanelLayout = new javax.swing.GroupLayout(outerPanel);
@@ -216,17 +218,6 @@ public class SmileViz extends javax.swing.JFrame {
             }
         }
         return null;
-
-    }
-
-    private String generateHTMLSpace(int n) {
-        String space = "&nbsp;";
-        StringBuilder htmlSpace = new StringBuilder();
-        for (int i = 0; i < n; i++) {
-            htmlSpace.append(space);
-        }
-
-        return htmlSpace.toString();
 
     }
 
