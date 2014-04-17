@@ -1,7 +1,7 @@
 SMILES Visualizer
 ========
 
-SMILES Visualizer (SmileViz) is a simple, always-on-top, java-based desktop application that visualizes the SMILES input provided. It is very useful in interpreting SMILES step by step (atom-by-atom) and checking how the connectivity proceeds. The light-weight visualizer differs from the commercially available structure visualizers in the following ways:
+SMILES Visualizer (SmileViz) is a simple, always-on-top, Java-based desktop application that dynamically visualizes the SMILES input provided. It is very useful in interpreting SMILES step by step (atom-by-atom) and checking how the connectivity proceeds. It uses [CDK](http://sourceforge.net/apps/mediawiki/cdk/index.php?title=Main_Page)'s [AtomContainerRenderer](http://pele.farmbio.uu.se/nightly-1.3.1/cdk-javadoc-1.4.0/org/openscience/cdk/renderer/AtomContainerRenderer.html) to draw the image from SMILES. Thanks to [John May](https://plus.google.com/+JohnMay/about) for the SmoothRenderer. The light-weight visualizer differs from the commercially available structure visualizers in the following ways:
 
 1. You need not hit enter each time you update the smile or enter a new atom (visualization is dynamically updated),
 2. Any error in the smile will be displayed (dynamically),
